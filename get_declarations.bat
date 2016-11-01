@@ -1,0 +1,1 @@
+"%~dp0Python27\python.exe" "%~dp0declarations_parser.py"

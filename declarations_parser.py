@@ -12,13 +12,13 @@ def get_json(id_):
 def str_to_float(str):
 	return float(str.replace(',', '.'))
 
-
-f = open('declaration_ids.txt', 'r')
+with open('declaration_ids.txt') as f:
+	decl_lines = f.readlines()
 
 declarations = []
 
-for line in f.readlines():
-	if line.strip() == '':
+for line in decl_lines:
+	if not line.strip():
 		break
 
 	declaration = get_json(line.strip())

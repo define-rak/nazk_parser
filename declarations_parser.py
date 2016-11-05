@@ -1,7 +1,8 @@
 # coding=utf-8
 
-import requests
+import csv
 import json
+import requests
 from collections import OrderedDict
 
 def get_json(id_):
@@ -405,8 +406,6 @@ for key_1 in declarations[0].keys():
 			title.append(key_1 + '/' + key_2)
 	else:
 		title.append(key_1)
-
-import csv
 
 csvfile = open('declarations.csv', 'wb')
 writer = csv.writer(csvfile, dialect = 'excel')

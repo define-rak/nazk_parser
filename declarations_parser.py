@@ -5,7 +5,7 @@ import json
 from collections import OrderedDict
 
 def get_json(id_):
-	return json.loads(requests.get(u'https://public-api.nazk.gov.ua/v1/declaration/' + id_, verify=False).text)
+	return requests.get(u'https://public-api.nazk.gov.ua/v1/declaration/' + id_, verify=False).json()
 
 
 def str_to_float(str):

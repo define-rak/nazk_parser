@@ -1,29 +1,28 @@
 # coding=utf-8
 
-import requests
+import csv
 import json
+import requests
+from collections import OrderedDict
 
-def get_json(id):
-
-	return json.loads(requests.get(u'https://public-api.nazk.gov.ua/v1/declaration/' + id, verify=False).text)
+def get_json(id_):
+	return requests.get(u'https://public-api.nazk.gov.ua/v1/declaration/' + id_, verify=False).json()
 
 
 def str_to_float(str):
-
 	return float(str.replace(',', '.'))
 
-
-f = open('declaration_ids.txt', 'r')
+with open('declaration_ids.txt') as f:
+	decl_lines = f.readlines()
 
 declarations = []
 
-for line in f.readlines():
-	if line.strip() == '':
+for line in decl_lines:
+	if not line.strip():
 		break
 
 	declaration = get_json(line.strip())
 
-	from collections import OrderedDict
 	processed_declaration = OrderedDict()
 
 	processed_declaration[u'id'] = declaration[u'id']
@@ -407,8 +406,6 @@ for key_1 in declarations[0].keys():
 			title.append(key_1 + '/' + key_2)
 	else:
 		title.append(key_1)
-
-import csv
 
 csvfile = open('declarations.csv', 'wb')
 writer = csv.writer(csvfile, dialect = 'excel')

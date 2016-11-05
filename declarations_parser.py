@@ -2,6 +2,7 @@
 
 import requests
 import json
+from collections import OrderedDict
 
 def get_json(id_):
 	return json.loads(requests.get(u'https://public-api.nazk.gov.ua/v1/declaration/' + id_, verify=False).text)
@@ -21,7 +22,6 @@ for line in f.readlines():
 
 	declaration = get_json(line.strip())
 
-	from collections import OrderedDict
 	processed_declaration = OrderedDict()
 
 	processed_declaration[u'id'] = declaration[u'id']

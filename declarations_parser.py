@@ -3,8 +3,8 @@
 import requests
 import json
 
-def get_json(id):
-	return json.loads(requests.get(u'https://public-api.nazk.gov.ua/v1/declaration/' + id, verify=False).text)
+def get_json(id_):
+	return json.loads(requests.get(u'https://public-api.nazk.gov.ua/v1/declaration/' + id_, verify=False).text)
 
 
 def str_to_float(str):
